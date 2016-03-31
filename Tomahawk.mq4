@@ -64,7 +64,7 @@ void start()
   {
 //----
 //if(IsVisualMode()==true){ IsTestingDelay(1); }
-
+//
 if (Bars != ThisBarTrade ) {
    ThisBarTrade = Bars;  // ensure only one trade opportunity per bar
      
