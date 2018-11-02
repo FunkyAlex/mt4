@@ -188,12 +188,13 @@ if (insideBarFlag == false && high1 <= high2 && low1 >= low2)
 
 if ( insideBarFlag == true && close1 < outsideHigh && high1 < outsideHigh && close1 > outsideLow && low1 < outsideLow )
 {
-   fakeoutLow ++;
+   // TODO stop this counting every tick
+   //fakeoutLow ++;
    
 }
 else if (insideBarFlag == true && close1 < outsideHigh && high1 > outsideHigh && close1 > outsideLow && low1 > outsideLow )
 {
-    fakeoutHigh ++;
+    //fakeoutHigh ++;
     
 }
 
@@ -208,7 +209,7 @@ if (true)// if no open positions - check for possible trade---------------------
         //Alert(stopLossPipsBuy + " " + spread);
        if(stopLossPipsBuy > NormalizeDouble(Ask-Bid,Digits))// is stop loss bigger than spread
        {
-           int ticketbuy = OrderSend(Symbol(),OP_BUY,Lots,Ask,Slippage,0 ,0  ,"F. "+spread+","+(stopLossPipsBuy)+","+(outsideLow + takeProfitBuy)+", "+fakeoutLow+","+fakeoutHigh+")",MAGICMA,0,Green);//- NormalizeDouble(Ask-Bid,Digits)
+           int ticketbuy = OrderSend(Symbol(),OP_BUY,Lots,Ask,Slippage,0 ,0  ,"F."+spread+","+(stopLossPipsBuy)+","+(outsideLow + takeProfitBuy)+", "+fakeoutLow+","+fakeoutHigh+")",MAGICMA,0,Green);//- NormalizeDouble(Ask-Bid,Digits)
             //Alert("buy insidebar:" + insideBarFlag);
            if(ticketbuy > 0)
            {
@@ -229,7 +230,7 @@ if (true)// if no open positions - check for possible trade---------------------
          double takeProfitSell = (MathAbs(NormalizeDouble(close1 -outsideHigh,Digits)))* TPExtra; //-takeProfitSell
          if(stopLossPipsSell > NormalizeDouble(Ask-Bid,Digits))// is stop loss bigger than spread
          {
-            int ticketsell = OrderSend(Symbol(),OP_SELL,Lots,Bid,Slippage,0  ,0 ,"F. "+spread+","+ (stopLossPipsSell)+","+(outsideHigh - takeProfitSell)+", "+fakeoutLow+","+fakeoutHigh+")",MAGICMA,0,Red); //+ NormalizeDouble(Ask-Bid,Digits)
+            int ticketsell = OrderSend(Symbol(),OP_SELL,Lots,Bid,Slippage,0  ,0 ,"F."+spread+","+ (stopLossPipsSell)+","+(outsideHigh - takeProfitSell)+", "+fakeoutLow+","+fakeoutHigh+")",MAGICMA,0,Red); //+ NormalizeDouble(Ask-Bid,Digits)
            //Alert("sell insidebar:" + insideBarFlag);
             
            if(ticketsell > 0)
@@ -245,7 +246,7 @@ if (true)// if no open positions - check for possible trade---------------------
   
   }
 
-  /*
+  
   total = OrdersHistoryTotal();
    for(int x = OrdersHistoryTotal() - 1; x >= 0; x--)
    {
@@ -291,7 +292,7 @@ if (true)// if no open positions - check for possible trade---------------------
          }
        }
 
-    }*/
+    }
 Comment(
 
   "Inside bar flagged : " + insideBarFlag + "\n",
